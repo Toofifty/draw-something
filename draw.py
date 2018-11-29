@@ -26,11 +26,11 @@ image = None
 
 def colour_diff(c1, c2):
     # get distance between two colours
-    return abs(c1[0] - c2[0]) + abs(c1[1] - c2[1]) + abs(c1[2] - c2[2])
+    return (c1[0] - c2[0]) ** 2 + (c1[1] - c2[1]) ** 2 + (c1[2] - c2[2]) ** 2
 
 def closest(colour):
     # get closest usable colour to the colour
-    best = 255 * 3
+    best = 255 * 255
     best_colour = BLACK
     for c in ALL_COLOURS:
         if colour_diff(colour, c) < best:
