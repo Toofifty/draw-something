@@ -153,25 +153,15 @@ def get_palette(colour_sets, quit=False):
         print('Getting colours from screen')
         x, y = mouse.position
         for i in range(3):
-            sleep(1)
             ss = pyscreenshot.grab(bbox=(x, y - swatch_dist / 2, x + screen_size, y))
             pixels = ss.load()
-            # ss.show()
-            # sleep(10)
             for p in range(0, ss.size[0], 10):
                 colour = pixels[p, swatch_dist / 4]
-                pixels[p, swatch_dist / 4] = RED
-                # print(colour)
-                # print(possible_palette)
-                # ss.show()
-                # input()
                 if not any(same(colour, swatch) for swatch in possible_palette):
                     continue
                 if any(same(colour, swatch) for swatch in palette):
                     continue
                 palette.append(colour)
-            # ss.show()
-            # input()
             mouse.position = from_top_left(screen_size / 2, -swatch_dist / 2)
             sleep(args.sleep)
             mouse.press(Button.left)
